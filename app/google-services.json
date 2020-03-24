@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "801039580205",
+    "firebase_url": "https://bluband-22310.firebaseio.com",
+    "project_id": "bluband-22310",
+    "storage_bucket": "bluband-22310.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801039580205:android:7007e881dddefd702a4ca4",
+        "android_client_info": {
+          "package_name": "com.mcgill.bluband"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801039580205-92bu14b0f8kosji6n8osp8q6kq55bd2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzJVfwARIm-Vgp25ua55QanR8lzBtsnYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801039580205-92bu14b0f8kosji6n8osp8q6kq55bd2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
