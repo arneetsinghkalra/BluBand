@@ -17,8 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private TextView email, password;
-    private Button loginButton;
+    private TextView email, password, alreadyHaveAnAccount;
     private Button registerButton;
     private FirebaseAuth mFirebaseAuth;
 
@@ -31,11 +30,9 @@ public class RegistrationActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         email = (TextView)findViewById(R.id.emailID); //Set email as input of email input in frontend
         password = (TextView)findViewById(R.id.passwordID);//Set password as input of password input in frontend
-        loginButton = (Button)findViewById(R.id.loginID);//Connnect login button to button on login page
         registerButton = (Button)findViewById(R.id.registerID);
 
-        final String storedEmail = "example@gmail.com";
-        final String storedPassword = "password1234";
+        alreadyHaveAnAccount = (TextView)findViewById(R.id.haveAnAccountText);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +78,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
         //Go back to login page if button clicked
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMainActivity();
