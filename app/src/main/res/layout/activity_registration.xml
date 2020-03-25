@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".RegistrationActivity">
 
     <ImageView
@@ -46,11 +47,12 @@
 
     <Button
         android:id="@+id/registerID"
-        android:layout_width="133dp"
-        android:layout_height="51dp"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
         android:layout_marginTop="17dp"
         android:text="Register"
-        android:textColor="@color/bluBandBlue"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -73,11 +75,12 @@
 
     <Button
         android:id="@+id/loginID"
-        android:layout_width="76dp"
-        android:layout_height="43dp"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="52dp"
         android:text="Login"
-        android:textColor="@color/bluBandBlue"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

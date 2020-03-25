@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
     private TextView forgotPassword;
+    private TextView dontHaveAnAccount;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (Button)findViewById(R.id.loginID);//Connnect login button to button on login page
         registerButton = (Button)findViewById(R.id.registerID);
         forgotPassword = (TextView)findViewById(R.id.forgotPasswordText);
+        dontHaveAnAccount = (TextView)findViewById(R.id.donthaveanaccountText);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        dontHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRegistrationActivity();
