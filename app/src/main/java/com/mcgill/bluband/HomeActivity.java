@@ -26,13 +26,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                openMainActivity(); //Go back to login page
+                openLoginActivity(); //Go back to login page
             }
         });
     }
 
-    public void openMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
+    public void openLoginActivity(){
+        Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
 }

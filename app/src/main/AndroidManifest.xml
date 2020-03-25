@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/bluband_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgotPasswordActivity"></activity>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".HomeActivity" />
         <activity

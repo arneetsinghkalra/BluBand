@@ -65,7 +65,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 Toast.makeText(RegistrationActivity.this,task.getException().getMessage() ,Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                openMainActivity(); //Successful so go to login page
+                                openLoginActivity(); //Successful so go to login page
                             }
                         }
                     });
@@ -81,14 +81,14 @@ public class RegistrationActivity extends AppCompatActivity {
         alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainActivity();
+                openLoginActivity();
             }
         });
     }
 
     //Method to go back to login page
-    public void openMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
+    public void openLoginActivity(){
+        Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
 }
