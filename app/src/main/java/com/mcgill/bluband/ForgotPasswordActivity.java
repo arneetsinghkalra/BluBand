@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private EditText email;
     private Button sendPasswordButton;
     private Button loginPageButton;
+    private ProgressBar progressBar;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -31,22 +33,29 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         email = (EditText)findViewById(R.id.emailID);
         sendPasswordButton = (Button)findViewById(R.id.sendPasswordID);
         loginPageButton = (Button)findViewById(R.id.loginID);
+        progressBar = (ProgressBar)findViewById(R.id.progressBarID);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         sendPasswordButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 firebaseAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(ForgotPasswordActivity.this,"Password sent to your email!", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                         else{
                             Toast.makeText(ForgotPasswordActivity.this, task.getException().getMessage() , Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
+
             }
         });
 
