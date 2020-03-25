@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         bluband.setAnimation(topAnim);
         slogan.setAnimation(bottomAnim);
         mcgill.setAnimation(bottomAnim);
-        mcgill.setAnimation(bottomAnim);
+        biodesign.setAnimation(bottomAnim);
 
 
         new Handler().postDelayed(new Runnable() {
