@@ -115,6 +115,16 @@
         app:layout_constraintTop_toBottomOf="@+id/donthaveanaccountText"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot your password?"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordID" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

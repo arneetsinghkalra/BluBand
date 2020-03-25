@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password;
     private Button loginButton;
     private Button registerButton;
+    private TextView forgotPassword;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.passwordID);//Set password as input of password input in frontend
         loginButton = (Button)findViewById(R.id.loginID);//Connnect login button to button on login page
         registerButton = (Button)findViewById(R.id.registerID);
+        forgotPassword = (TextView)findViewById(R.id.forgotPasswordText);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -51,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openForgotPasswordActivity();
+            }
+        });
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //Could not sign in
                             if(!task.isSuccessful()){
-                                Toast.makeText(MainActivity.this,"Login Error, Try Again",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 Toast.makeText(MainActivity.this,"Successful Login",Toast.LENGTH_SHORT).show();
@@ -111,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openHomeActivity(){
         Intent intent = new Intent(this,HomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void openForgotPasswordActivity(){
+        Intent intent = new Intent(this,ForgotPasswordActivity.class);
         startActivity(intent);
     }
 

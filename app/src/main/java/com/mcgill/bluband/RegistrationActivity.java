@@ -65,7 +65,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //If not succesful
                             if (!task.isSuccessful()){
-                                Toast.makeText(RegistrationActivity.this,"Registering Unsuccessful",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegistrationActivity.this,task.getException().getMessage() ,Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 openMainActivity(); //Successful so go to login page
