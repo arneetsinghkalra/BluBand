@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -29,6 +30,17 @@ public class HomeActivity extends AppCompatActivity {
                 openLoginActivity(); //Go back to login page
             }
         });
+
+        //TODO
+        //To setup new user
+        Button setupButton = findViewById(R.id.setupBtn);
+        setupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
     }
 
     public void openLoginActivity(){
