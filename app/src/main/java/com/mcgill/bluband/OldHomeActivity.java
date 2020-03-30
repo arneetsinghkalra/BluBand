@@ -24,7 +24,6 @@ public class OldHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oldhome);
-/*
 
         //To Sign out
         logoutButton = findViewById(R.id.logoutID);
@@ -45,7 +44,6 @@ public class OldHomeActivity extends AppCompatActivity {
                 openNewUserActivity();
             }
         });
-*/
 
     }
 
