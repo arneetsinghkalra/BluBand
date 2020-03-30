@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class NewUserActivity extends AppCompatActivity {
 
@@ -27,7 +26,7 @@ public class NewUserActivity extends AppCompatActivity {
     }
 
     public void openHomeActivity(){
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, OldHomeActivity.class);
         startActivity(intent);
     }
 }
