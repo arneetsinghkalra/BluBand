@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/bluband_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewUserActivity"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NewUserActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".OldHomeActivity" />
         <activity
             android:name=".ui.login.RegistrationActivity"
             android:label="@string/title_activity_registration" />
