@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         setupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                openNewUserActivity();
             }
         });
 
@@ -45,6 +45,11 @@ public class HomeActivity extends AppCompatActivity {
 
     public void openLoginActivity(){
         Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void openNewUserActivity(){
+        Intent intent = new Intent(HomeActivity.this, NewUserActivity.class);
         startActivity(intent);
     }
 }
