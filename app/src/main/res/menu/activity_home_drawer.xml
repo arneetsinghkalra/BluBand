@@ -8,12 +8,6 @@
             android:id="@+id/nav_listChildren"
             android:title="List of Children" />
         <item
-            android:id="@+id/nav_addChild"
-            android:title="Add a Child" />
-        <item
-            android:id="@+id/nav_removeChild"
-            android:title="Remove a Child" />
-        <item
             android:id="@+id/nav_accountInfo"
             android:title="Account Info" />
         <item
