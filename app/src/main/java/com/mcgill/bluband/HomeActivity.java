@@ -10,6 +10,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -23,8 +25,8 @@ import androidx.appcompat.widget.Toolbar;
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FirebaseDatabase rootnode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,13 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.nav_listChildren: {
                         break;
                     }
+                    case R.id.nav_addChild: {
+                        //openAddChildActivity();
+                        break;
+                    }
+                    case R.id.nav_removeChild: {
+                        break;
+                    }
                     case R.id.nav_accountInfo: {
                         break;
                     }
@@ -81,6 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
