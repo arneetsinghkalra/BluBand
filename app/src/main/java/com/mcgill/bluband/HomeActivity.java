@@ -18,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oldhome);
+        setContentView(R.layout.activity_home);
 
         //To Sign out
         logoutButton = findViewById(R.id.logoutID);
