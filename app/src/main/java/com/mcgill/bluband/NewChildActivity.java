@@ -3,6 +3,8 @@ package com.mcgill.bluband;
 import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,15 +15,22 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-public class NewUserActivity extends BaseActivity {
+public class NewChildActivity extends BaseActivity {
     FirebaseAuth FirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private Button addChildButton;
+    private EditText nameInput;
+    private EditText genderInput;
+    private EditText dateOfBirthInput;
+    private EditText addressInput;
+    private EditText contactPersonInput;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_user);
+        setContentView(R.layout.activity_new_child);
 
         //**********************Create Nav Bar with custom Tool Bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,5 +84,13 @@ public class NewUserActivity extends BaseActivity {
                 })
                 .build();
         //********************** End of nav bar code
+
+        addChildButton = findViewById(R.id.addChildBtn);
+        nameInput = findViewById(R.id.nameText);
+        genderInput = findViewById(R.id.genderText);
+        dateOfBirthInput = findViewById(R.id.dateOfBirthText);
+        addressInput = findViewById(R.id.addressText);
+        contactPersonInput = findViewById(R.id.contactPersonText);
+
     }
 }
