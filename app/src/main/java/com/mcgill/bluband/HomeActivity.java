@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -96,14 +97,14 @@ public class HomeActivity extends BaseActivity {
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
         listView.setAdapter(adapter);
 
-        myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
-        myDatabase.addValueEventListener(new ValueEventListener() {
+        Query myQuery = FirebaseDatabase.getInstance().getReference().child("children").orderByChild("glucose");
+        myQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Child aChild = snapshot.getValue(Child.class);
-                    String txt = aChild.getName()+": "+aChild.getGlucose() ;
+                    String txt = aChild.getName()+"\nGlucose Level: "+aChild.getGlucose()+" mg/dL";
                     list.add(txt);
                 }
                 adapter.notifyDataSetChanged();
