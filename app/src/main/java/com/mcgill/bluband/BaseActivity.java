@@ -29,7 +29,7 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openNewUserActivity(){
+    public void openNewChildActivity(){
         Intent intent = new Intent(this, NewChildActivity.class);
         startActivity(intent);
     }

@@ -3,18 +3,36 @@ package com.mcgill.bluband;
 import java.util.Date;
 
 public class Child {
-    public String name, gender, address, contactPerson, dateOfBirth;
+    public String name, gender, address, contactPerson, dateOfBirth, phone;
     public int glucose;
     public Child(){
         //Default Constructor
     }
-    public void Child(String name, String gender, String dateOfBirth, String address, String contactPerson, int glucose){
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, int glucose){
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.contactPerson = contactPerson;
         this.glucose = glucose;
+    }
+
+    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, String phone){
+        this.name = name;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.contactPerson = contactPerson;
+        this.phone = phone;
     }
 
     public int getGlucose() {

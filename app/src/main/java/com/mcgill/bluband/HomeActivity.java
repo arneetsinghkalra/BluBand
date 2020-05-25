@@ -1,21 +1,14 @@
 package com.mcgill.bluband;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -78,7 +71,7 @@ public class HomeActivity extends BaseActivity {
                                 reOpenCurrentActivity();
                                 break;
                             case 2:
-                                openNewUserActivity();
+                                openNewChildActivity();
                                 break;
                             //Logout case
                             case 3:

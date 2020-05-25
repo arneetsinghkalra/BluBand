@@ -3,11 +3,16 @@ package com.mcgill.bluband;
 import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -24,7 +29,15 @@ public class NewChildActivity extends BaseActivity {
     private EditText dateOfBirthInput;
     private EditText addressInput;
     private EditText contactPersonInput;
-
+    private EditText phoneInput;
+    DatabaseReference myDatabase;
+    Child aNewChild;
+    String name;
+    String gender;
+    String dateOfBirth;
+    String address;
+    String contactPerson;
+    String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +97,76 @@ public class NewChildActivity extends BaseActivity {
                 })
                 .build();
         //********************** End of nav bar code
+        //Get a reference for each field
+        addChildButton = (Button)findViewById(R.id.addChildBtn);
+        nameInput =(EditText) findViewById(R.id.nameText);
+        genderInput = (EditText) findViewById(R.id.genderText);
+        //ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(this, R.array.genders, android.R.layout.simple_spinner_item);
+        //genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //genderInput.setAdapter(genderAdapter);
+        dateOfBirthInput = (EditText)findViewById(R.id.dateOfBirthText);
+        addressInput = (EditText)findViewById(R.id.addressText);
+        contactPersonInput = (EditText)findViewById(R.id.contactPersonText);
+        phoneInput = (EditText)findViewById(R.id.phoneText) ;
 
-        addChildButton = findViewById(R.id.addChildBtn);
-        nameInput = findViewById(R.id.nameText);
-        genderInput = findViewById(R.id.genderText);
-        dateOfBirthInput = findViewById(R.id.dateOfBirthText);
-        addressInput = findViewById(R.id.addressText);
-        contactPersonInput = findViewById(R.id.contactPersonText);
+
+        //Create a child instance
+        aNewChild = new Child();
+        //Reference database
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
+
+        addChildButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Store input in variables
+                name = nameInput.getText().toString().trim();
+                gender = genderInput.getText().toString().trim().toLowerCase() ;
+                dateOfBirth = dateOfBirthInput.getText().toString().trim();
+                address = addressInput.getText().toString().trim();
+                contactPerson = contactPersonInput.getText().toString().trim();
+                phone = phoneInput.getText().toString().trim();
+
+                //Check case that not all inputs were added
+                if (name.isEmpty()){
+                    Toast.makeText(NewChildActivity.this, "Please insert a name!", Toast.LENGTH_SHORT).show();
+                }
+                else if (gender.isEmpty()) {
+                    Toast.makeText(NewChildActivity.this, "Please insert a gender!", Toast.LENGTH_SHORT).show();
+                }
+                else if (!gender.equals("male") || !gender.equals("female")){
+                    //If Male or Female is not inputted, show an error
+                    Toast.makeText(NewChildActivity.this, "Please type 'Male' or 'Female'!", Toast.LENGTH_SHORT).show();
+                }
+                else if (dateOfBirth.isEmpty()){
+                    Toast.makeText(NewChildActivity.this, "Please insert a date of birth!", Toast.LENGTH_SHORT).show();
+                }
+                else if (address.isEmpty()){
+                    Toast.makeText(NewChildActivity.this, "Please insert an address!", Toast.LENGTH_SHORT).show();
+                }
+                else if (contactPerson.isEmpty()){
+                    Toast.makeText(NewChildActivity.this, "Please insert a contact person!", Toast.LENGTH_SHORT).show();
+                }
+                else if (phone.isEmpty()){
+                    Toast.makeText(NewChildActivity.this, "Please insert a phone number!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    aNewChild.setName(name);
+                    aNewChild.setGender(gender);
+                    aNewChild.setDateOfBirth(dateOfBirth);
+                    aNewChild.setAddress(address);
+                    aNewChild.setContactPerson(contactPerson);
+                    aNewChild.setPhone(phone);
+                    //Add to database
+                    myDatabase.push().setValue(aNewChild);
+                    //Show a toast to see if it worked
+                    Toast.makeText(NewChildActivity.this, "New Child Inserted!", Toast.LENGTH_LONG).show();
+                    openNewChildActivity();
+                }
+            }
+        });
+
+
+
 
     }
 }

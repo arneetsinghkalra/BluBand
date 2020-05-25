@@ -11,15 +11,16 @@
         android:id="@+id/dateOfBirthText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints="password"
         android:ems="10"
         android:fontFamily="@font/opensans_bold"
-        android:hint="Date of Birth"
-        android:inputType="textPersonName"
+        android:hint="Date of Birth: YYYY/MM/DD"
+        android:inputType="datetime"
         app:layout_constraintBottom_toTopOf="@+id/addChildBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genderText"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -57,20 +58,20 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.316"
         app:layout_constraintStart_toEndOf="@+id/navButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <Button
         android:id="@+id/addChildBtn"
         android:layout_width="130dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="100dp"
-        android:fontFamily="@font/opensans_bold"
-        android:textColor="@color/white"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/custom_button"
+        android:fontFamily="@font/opensans_bold"
         android:text="Add Child"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -88,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.169" />
+        app:layout_constraintVertical_bias="0.10" />
 
     <EditText
         android:id="@+id/genderText"
@@ -96,13 +97,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/opensans_bold"
-        android:hint="Gender"
-        android:inputType="textPersonName"
+        android:hint="Gender: Male/Female"
+        android:inputType="textShortMessage"
         app:layout_constraintBottom_toTopOf="@+id/addChildBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <EditText
         android:id="@+id/addressText"
@@ -111,12 +112,12 @@
         android:ems="10"
         android:fontFamily="@font/opensans_bold"
         android:hint="Address"
-        android:inputType="textPersonName"
+        android:inputType="textPostalAddress"
         app:layout_constraintBottom_toTopOf="@+id/addChildBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateOfBirthText"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <EditText
         android:id="@+id/contactPersonText"
@@ -129,7 +130,21 @@
         app:layout_constraintBottom_toTopOf="@+id/addChildBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneText"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <EditText
+        android:id="@+id/phoneText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/opensans_bold"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/addChildBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressText"
-        app:layout_constraintVertical_bias="0.309" />
+        app:layout_constraintVertical_bias="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
