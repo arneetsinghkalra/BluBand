@@ -25,4 +25,9 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
