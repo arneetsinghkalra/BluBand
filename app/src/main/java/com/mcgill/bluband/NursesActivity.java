@@ -2,17 +2,25 @@ package com.mcgill.bluband;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+import java.util.ArrayList;
 
 public class NursesActivity extends BaseActivity {
     private ListView listView;
@@ -80,5 +88,32 @@ public class NursesActivity extends BaseActivity {
                     }
                 })
                 .build();
+
+        //End of navbar code **************************************
+
+        //Firebase database -------------------
+        listView = (ListView) findViewById(R.id.nursesList);
+        final ArrayList<String> list = new ArrayList<>();
+        final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
+        listView.setAdapter(adapter);
+
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("nurses");
+        myDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list.clear();
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    Nurse aNurse = snapshot.getValue(Nurse.class);
+                    String txt = "Name: "+aNurse.getName()+"\nEmail: "+aNurse.getEmail()+"\nPhone: "+aNurse.getPhone() ;
+                    list.add(txt);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
