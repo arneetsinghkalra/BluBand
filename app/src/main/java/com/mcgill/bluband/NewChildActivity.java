@@ -120,7 +120,7 @@ public class NewChildActivity extends BaseActivity {
             public void onClick(View v) {
                 //Store input in variables
                 name = nameInput.getText().toString().trim();
-                gender = genderInput.getText().toString().trim().toLowerCase() ;
+                gender = genderInput.getText().toString().trim();
                 dateOfBirth = dateOfBirthInput.getText().toString().trim();
                 address = addressInput.getText().toString().trim();
                 contactPerson = contactPersonInput.getText().toString().trim();
@@ -133,9 +133,9 @@ public class NewChildActivity extends BaseActivity {
                 else if (gender.isEmpty()) {
                     Toast.makeText(NewChildActivity.this, "Please insert a gender!", Toast.LENGTH_SHORT).show();
                 }
-                else if (!gender.equals("male") || !gender.equals("female")){
+                else if (!((gender.equals("Male")) || (gender.equals("Female")))){
                     //If Male or Female is not inputted, show an error
-                    Toast.makeText(NewChildActivity.this, "Please type 'Male' or 'Female'!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewChildActivity.this, gender+" Please type 'Male' or 'Female'!", Toast.LENGTH_SHORT).show();
                 }
                 else if (dateOfBirth.isEmpty()){
                     Toast.makeText(NewChildActivity.this, "Please insert a date of birth!", Toast.LENGTH_SHORT).show();
@@ -143,11 +143,14 @@ public class NewChildActivity extends BaseActivity {
                 else if (address.isEmpty()){
                     Toast.makeText(NewChildActivity.this, "Please insert an address!", Toast.LENGTH_SHORT).show();
                 }
-                else if (contactPerson.isEmpty()){
-                    Toast.makeText(NewChildActivity.this, "Please insert a contact person!", Toast.LENGTH_SHORT).show();
-                }
                 else if (phone.isEmpty()){
                     Toast.makeText(NewChildActivity.this, "Please insert a phone number!", Toast.LENGTH_SHORT).show();
+                }
+                else if (phone.length() != 10){
+                    Toast.makeText(NewChildActivity.this, "Please insert a valid phone number!", Toast.LENGTH_SHORT).show();
+                }
+                else if (contactPerson.isEmpty()){
+                    Toast.makeText(NewChildActivity.this, "Please insert a contact person!", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     aNewChild.setName(name);
