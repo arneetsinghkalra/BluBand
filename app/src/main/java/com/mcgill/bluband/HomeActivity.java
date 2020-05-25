@@ -94,7 +94,7 @@ public class HomeActivity extends BaseActivity {
         //Firebase database -------------------
         listView = (ListView) findViewById(R.id.dashboard);
         final ArrayList<String> list = new ArrayList<>();
-        final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, list);
+        final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
         myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
@@ -103,7 +103,9 @@ public class HomeActivity extends BaseActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    list.add(snapshot.getValue().toString());
+                    Child aChild = snapshot.getValue(Child.class);
+                    String txt = aChild.getGender() ;
+                    list.add(txt);
                 }
                 adapter.notifyDataSetChanged();
             }

@@ -9,6 +9,14 @@ public class Child {
     public Child(){
         //Default Constructor
     }
+    public void Child(String name, String gender, Date dateOfBirth, String address, String phoneNumber, String contactPerson){
+        this.name = name;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.contactPerson = contactPerson;
+    }
 
     public String getName() {
         return name;
@@ -57,12 +65,5 @@ public class Child {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void addChild(String name, String gender, Date dateOfBirth, String address, String phoneNumber, String contactPerson){
-        this.name = name;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.contactPerson = contactPerson;
-    }
+
 }
