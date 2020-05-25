@@ -28,6 +28,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends BaseActivity {
     private ListView listView;
@@ -95,6 +96,10 @@ public class HomeActivity extends BaseActivity {
         listView = (ListView) findViewById(R.id.dashboard);
         final ArrayList<String> list = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
+
+//        private List<String> childName;
+//        private List<String> childId;
+//        private List<Integer> glucoseLevel;
         listView.setAdapter(adapter);
 
         myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
