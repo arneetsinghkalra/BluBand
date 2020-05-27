@@ -1,5 +1,6 @@
 package com.mcgill.bluband;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.View;
@@ -7,18 +8,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+import java.util.ArrayList;
 
 public class NewChildActivity extends BaseActivity {
     FirebaseAuth FirebaseAuth;
@@ -38,6 +46,8 @@ public class NewChildActivity extends BaseActivity {
     String address;
     String contactPerson;
     String phone;
+    String childId;
+    int nbChildren;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +168,21 @@ public class NewChildActivity extends BaseActivity {
                     Toast.makeText(NewChildActivity.this, "Please insert a contact person!", Toast.LENGTH_SHORT).show();
                 }
                 else{
+
+                    //Firebase database -------------------
+                    myDatabase.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            nbChildren = (int) dataSnapshot.getChildrenCount();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    childId = "CH" + String.format("%03d", nbChildren);
+
                     aNewChild.setName(name);
                     aNewChild.setGender(gender);
                     aNewChild.setDateOfBirth(dateOfBirth);
@@ -165,7 +190,8 @@ public class NewChildActivity extends BaseActivity {
                     aNewChild.setContactPerson(contactPerson);
                     aNewChild.setPhone(phone);
                     //Add to database
-                    myDatabase.push().setValue(aNewChild);
+                    myDatabase.child(childId).setValue(aNewChild);
+//                    myDatabase.push().setValue(aNewChild);
                     //Show a toast to see if it worked
                     Toast.makeText(NewChildActivity.this, "New Child Inserted!", Toast.LENGTH_LONG).show();
                     openNewChildActivity();
