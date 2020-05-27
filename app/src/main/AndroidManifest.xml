@@ -14,6 +14,7 @@
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".HomeActivity"/>
+        <activity android:name=".NursesActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

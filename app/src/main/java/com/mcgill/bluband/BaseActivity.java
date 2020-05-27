@@ -34,6 +34,11 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openNursesActivity(){
+        Intent intent = new Intent(this, NursesActivity.class);
+        startActivity(intent);
+    }
+
     public void reOpenCurrentActivity(){
         navDrawer.closeDrawer();
     }

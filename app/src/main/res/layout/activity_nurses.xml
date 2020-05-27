@@ -4,9 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/lightBlue"
-    tools:context=".HomeActivity">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -39,7 +38,7 @@
         android:fontFamily="@font/opensans_semibold"
         android:gravity="center"
         android:paddingHorizontal="15dp"
-        android:text="Home"
+        android:text="Nurses"
         android:textColor="@color/bluBandBlue"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +49,7 @@
         app:layout_constraintVertical_bias="0.08" />
 
     <ListView
-        android:id="@+id/dashboard"
+        android:id="@+id/nursesList"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,6 +58,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.294" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

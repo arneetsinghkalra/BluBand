@@ -1,19 +1,18 @@
 package com.mcgill.bluband;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -22,16 +21,15 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class HomeActivity extends BaseActivity {
+public class NursesActivity extends BaseActivity {
     private ListView listView;
     private DatabaseReference myDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_nurses);
 
         //**********************Create Nav Bar with custom Tool Bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -44,7 +42,7 @@ public class HomeActivity extends BaseActivity {
             }
         });
 
-        navHeader  = new AccountHeaderBuilder()
+        navHeader = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withTranslucentStatusBar(true)
                 .withHeaderBackground(R.mipmap.logo)
@@ -59,7 +57,7 @@ public class HomeActivity extends BaseActivity {
                 .withActivity(this)
                 .withAccountHeader(navHeader)
                 .withActionBarDrawerToggle(true)
-                .withSelectedItem(1)
+                .withSelectedItem(3)
                 .addDrawerItems(
                         home,
                         children,
@@ -69,17 +67,17 @@ public class HomeActivity extends BaseActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        switch(position){
+                        switch (position) {
                             //Home Button
                             case 1:
-                                reOpenCurrentActivity();
+                                openHomeActivity();
                                 break;
                             //Children
                             case 2:
                                 openNewChildActivity();
                                 break;
                             case 3:
-                                openNursesActivity();
+                                reOpenCurrentActivity();
                                 break;
                             //Logout case
                             case 4:
@@ -90,26 +88,23 @@ public class HomeActivity extends BaseActivity {
                     }
                 })
                 .build();
-        //********************** End of nav bar code
+
+        //End of navbar code **************************************
 
         //Firebase database -------------------
-        listView = (ListView) findViewById(R.id.dashboard);
+        listView = (ListView) findViewById(R.id.nursesList);
         final ArrayList<String> list = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
-
-//        private List<String> childName;
-//        private List<String> childId;
-//        private List<Integer> glucoseLevel;
         listView.setAdapter(adapter);
 
-        Query myQuery = FirebaseDatabase.getInstance().getReference().child("children").orderByChild("glucose");
-        myQuery.addValueEventListener(new ValueEventListener() {
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("nurses");
+        myDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    Child aChild = snapshot.getValue(Child.class);
-                    String txt = aChild.getName()+"\nGlucose Level: "+aChild.getGlucose()+" mg/dL";
+                    Nurse aNurse = snapshot.getValue(Nurse.class);
+                    String txt = "Name: "+aNurse.getName()+"\nEmail: "+aNurse.getEmail()+"\nPhone: "+aNurse.getPhone() ;
                     list.add(txt);
                 }
                 adapter.notifyDataSetChanged();

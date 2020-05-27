@@ -63,8 +63,9 @@ public class NewChildActivity extends BaseActivity {
                 .build();
 
         PrimaryDrawerItem home = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withSelectable(true);
-        PrimaryDrawerItem children = new PrimaryDrawerItem().withIdentifier(2).withName("Children").withSelectable(true);
-        PrimaryDrawerItem logout = new PrimaryDrawerItem().withIdentifier(2).withName("Logout");
+        PrimaryDrawerItem children = new PrimaryDrawerItem().withIdentifier(2).withName("Add a Child").withSelectable(true);
+        PrimaryDrawerItem nurses = new PrimaryDrawerItem().withIdentifier(3).withName("Nurses");
+        PrimaryDrawerItem logout = new PrimaryDrawerItem().withIdentifier(4).withName("Logout");
 
 
         navDrawer = new DrawerBuilder()
@@ -74,6 +75,7 @@ public class NewChildActivity extends BaseActivity {
                 .addDrawerItems(
                         home,
                         children,
+                        nurses,
                         logout
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -87,8 +89,11 @@ public class NewChildActivity extends BaseActivity {
                             case 2:
                                 reOpenCurrentActivity();
                                 break;
-                            //Logout case
                             case 3:
+                                openNursesActivity();
+                                break;
+                            //Logout case
+                            case 4:
                                 signOff();
                                 break;
                         }
@@ -167,9 +172,5 @@ public class NewChildActivity extends BaseActivity {
                 }
             }
         });
-
-
-
-
     }
 }
