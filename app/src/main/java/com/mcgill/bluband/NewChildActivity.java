@@ -47,7 +47,7 @@ public class NewChildActivity extends BaseActivity {
     String contactPerson;
     String phone;
     String childId;
-    int nbChildren;
+    int nbChildren = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +129,17 @@ public class NewChildActivity extends BaseActivity {
         aNewChild = new Child();
         //Reference database
         myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
+        myDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                nbChildren = (int) dataSnapshot.getChildrenCount() + 1;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,19 +179,6 @@ public class NewChildActivity extends BaseActivity {
                     Toast.makeText(NewChildActivity.this, "Please insert a contact person!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-
-                    //Firebase database -------------------
-                    myDatabase.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            nbChildren = (int) dataSnapshot.getChildrenCount();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
                     childId = "CH" + String.format("%03d", nbChildren);
 
                     aNewChild.setName(name);
