@@ -39,21 +39,25 @@
         android:id="@+id/mcgillID"
         android:layout_width="163dp"
         android:layout_height="95dp"
-        android:layout_marginTop="88dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintHorizontal_bias="0.709"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sloganID"
+        app:layout_constraintVertical_bias="0.516"
         app:srcCompat="@mipmap/mcgill" />
 
     <ImageView
         android:id="@+id/biodesignID"
         android:layout_width="105dp"
         android:layout_height="175dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toStartOf="@+id/mcgillID"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sloganID"
+        app:layout_constraintVertical_bias="0.507"
         app:srcCompat="@mipmap/biodesignlogo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
