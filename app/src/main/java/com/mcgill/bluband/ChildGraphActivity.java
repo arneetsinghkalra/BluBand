@@ -13,29 +13,27 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-public class ChildGraphActivity extends AppCompatActivity {
+public class ChildGraphActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_graph);
-
         setNavigationDrawer();
-
-
     }
 
     private void setNavigationDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackground(getDrawable(R.color.lightBlue));
-        ImageView navBtn = (ImageView) findViewById(R.id.navButton);
+        ImageView navBtn = (ImageView) findViewById(R.id.backButton);
         navBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                navDrawer.openDrawer();
+                openHomeActivity();
             }
         });
-
+        //Commented the navgation bar out because we should ideally only use a back button to return to the home activity
+        /*
         navHeader  = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withTranslucentStatusBar(true)
@@ -82,5 +80,6 @@ public class ChildGraphActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+         */
     }
 }
