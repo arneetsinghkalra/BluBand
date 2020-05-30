@@ -3,8 +3,10 @@ package com.mcgill.bluband;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -97,8 +99,10 @@ public class HomeActivity extends BaseActivity {
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
         listView.setAdapter(adapter);
 
-        Query myQuery = FirebaseDatabase.getInstance().getReference().child("children").orderByChild("glucose");
-        myQuery.addValueEventListener(new ValueEventListener() {
+//        Query myQuery = FirebaseDatabase.getInstance().getReference().child("children").orderByChild("glucose");
+//        myQuery.addValueEventListener(new ValueEventListener() {
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
+        myDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
@@ -113,6 +117,15 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent showChildGraphActivity = new Intent(getApplicationContext(), ChildGraphActivity.class);
+                showChildGraphActivity.putExtra("CHILD_ID", position);
+                startActivity(showChildGraphActivity);
             }
         });
     }

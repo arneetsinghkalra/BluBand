@@ -1,27 +1,61 @@
 package com.mcgill.bluband;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-public class ChildGraphActivity extends AppCompatActivity {
+public class ChildGraphActivity extends BaseActivity {
+
+    TextView childNameTextView;
+    String childName;
+    Button editBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_graph);
 
+        childNameTextView = (TextView) findViewById(R.id.childNameTextView);
+        editBtn = (Button) findViewById(R.id.editChildBtn);
+
         setNavigationDrawer();
 
+        Intent intent = getIntent();
+        int childIndex = intent.getIntExtra("CHILD_ID", -1) + 1;
+        String childId = "CH" + String.format("%03d", childIndex);
+
+        if (childIndex > -1) {
+            final DatabaseReference childDatabase= FirebaseDatabase.getInstance().getReference().child("children").child(childId);
+
+            setTitle(childDatabase);
+
+            editBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO: create a new activity that displays the kid's info and allow the nurse to change those values.
+                    // then connect to the database to change whichever value was changed
+                }
+            });
+
+        }
 
     }
 
@@ -64,7 +98,7 @@ public class ChildGraphActivity extends AppCompatActivity {
                         switch(position){
                             //Home Button
                             case 1:
-                                reOpenCurrentActivity();
+                                openHomeActivity();
                                 break;
                             //Children
                             case 2:
@@ -83,4 +117,21 @@ public class ChildGraphActivity extends AppCompatActivity {
                 })
                 .build();
     }
+
+    private void setTitle(DatabaseReference childDatabase) {
+        childDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Child child = dataSnapshot.getValue(Child.class);
+                childName = child.getName();
+                childNameTextView.setText(childName);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
