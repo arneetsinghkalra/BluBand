@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -95,6 +96,7 @@ public class HomeActivity extends BaseActivity {
 
         //Firebase database -------------------
         listView = (ListView) findViewById(R.id.dashboard);
+        listView.setClickable(true);
         final ArrayList<String> list = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
         listView.setAdapter(adapter);
@@ -112,6 +114,14 @@ public class HomeActivity extends BaseActivity {
                     list.add(txt);
                 }
                 adapter.notifyDataSetChanged();
+
+                //Code runs when you click on an item in the listview
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Toast.makeText(HomeActivity.this,""+position+1 , Toast.LENGTH_SHORT).show();
+                        openChildGraphActivity();
+                    }
+                });
             }
 
             @Override
@@ -128,5 +138,6 @@ public class HomeActivity extends BaseActivity {
                 startActivity(showChildGraphActivity);
             }
         });
+
     }
 }

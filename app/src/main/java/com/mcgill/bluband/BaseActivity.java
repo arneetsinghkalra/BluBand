@@ -39,6 +39,11 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openChildGraphActivity(){
+        Intent intent = new Intent(this, ChildGraphActivity.class);
+        startActivity(intent);
+    }
+
     public void reOpenCurrentActivity(){
         navDrawer.closeDrawer();
     }

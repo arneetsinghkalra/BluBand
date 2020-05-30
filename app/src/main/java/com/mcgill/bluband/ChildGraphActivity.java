@@ -57,19 +57,21 @@ public class ChildGraphActivity extends BaseActivity {
 
         }
 
+        setNavigationDrawer();
     }
 
     private void setNavigationDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackground(getDrawable(R.color.lightBlue));
-        ImageView navBtn = (ImageView) findViewById(R.id.navButton);
+        ImageView navBtn = (ImageView) findViewById(R.id.backButton);
         navBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                navDrawer.openDrawer();
+                openHomeActivity();
             }
         });
-
+        //Commented the navgation bar out because we should ideally only use a back button to return to the home activity
+        /*
         navHeader  = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withTranslucentStatusBar(true)
@@ -116,6 +118,7 @@ public class ChildGraphActivity extends BaseActivity {
                     }
                 })
                 .build();
+         */
     }
 
     private void setTitle(DatabaseReference childDatabase) {

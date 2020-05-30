@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/navButton"
+        android:id="@+id/backButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.56"
-        app:srcCompat="@drawable/navbar" />
+        app:srcCompat="@drawable/backarrow" />
 
     <TextView
         android:id="@+id/childNameTextView"
