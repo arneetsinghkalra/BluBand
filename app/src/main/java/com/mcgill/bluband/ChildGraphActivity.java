@@ -50,8 +50,7 @@ public class ChildGraphActivity extends BaseActivity {
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: create a new activity that displays the kid's info and allow the nurse to change those values.
-                    // then connect to the database to change whichever value was changed
+                    openEditChildActivity();
                 }
             });
 
@@ -117,6 +116,10 @@ public class ChildGraphActivity extends BaseActivity {
                 })
                 .build();
          */
+    }
+
+    private void openChildDatabase() {
+        
     }
 
     private void setTitle(DatabaseReference childDatabase) {

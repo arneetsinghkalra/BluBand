@@ -45,6 +45,12 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openEditChildActivity(int childNumberId) {
+        Intent intent = new Intent(this, EditChildActivity.class);
+        intent.putExtra("CHILD_ID", childNumberId);
+        startActivity(intent);
+    }
+
     public void reOpenCurrentActivity(){
         navDrawer.closeDrawer();
     }
