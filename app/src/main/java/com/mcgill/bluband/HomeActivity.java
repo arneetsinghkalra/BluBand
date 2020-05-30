@@ -101,8 +101,6 @@ public class HomeActivity extends BaseActivity {
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
         listView.setAdapter(adapter);
 
-//        Query myQuery = FirebaseDatabase.getInstance().getReference().child("children").orderByChild("glucose");
-//        myQuery.addValueEventListener(new ValueEventListener() {
         myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
         myDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -118,8 +116,9 @@ public class HomeActivity extends BaseActivity {
                 //Code runs when you click on an item in the listview
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(HomeActivity.this,""+position+1 , Toast.LENGTH_SHORT).show();
-                        openChildGraphActivity();
+                        int childNumberId = position + 1;
+                        Toast.makeText(HomeActivity.this,"CH"+childNumberId , Toast.LENGTH_SHORT).show();
+                        openChildGraphActivity(childNumberId);
                     }
                 });
             }

@@ -39,10 +39,10 @@ public class ChildGraphActivity extends BaseActivity {
         setNavigationDrawer();
 
         Intent intent = getIntent();
-        int childIndex = intent.getIntExtra("CHILD_ID", -1) + 1;
-        String childId = "CH" + String.format("%03d", childIndex);
+        int childNumberId = intent.getIntExtra("CHILD_ID", -1);
+        String childId = "CH" + String.format("%03d", childNumberId);
 
-        if (childIndex > -1) {
+        if (childNumberId > -1) {
             final DatabaseReference childDatabase= FirebaseDatabase.getInstance().getReference().child("children").child(childId);
 
             setTitle(childDatabase);
@@ -56,8 +56,6 @@ public class ChildGraphActivity extends BaseActivity {
             });
 
         }
-
-        setNavigationDrawer();
     }
 
     private void setNavigationDrawer() {
