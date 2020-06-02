@@ -117,8 +117,9 @@ public class HomeActivity extends BaseActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         int childNumberId = position + 1;
-                        Toast.makeText(HomeActivity.this,"CH"+childNumberId , Toast.LENGTH_SHORT).show();
-                        openChildGraphActivity(childNumberId);
+                        String childId = "CH" + String.format("%03d", childNumberId);
+                        Toast.makeText(HomeActivity.this, childId , Toast.LENGTH_SHORT).show();
+                        openChildGraphActivity(childId);
                     }
                 });
             }
