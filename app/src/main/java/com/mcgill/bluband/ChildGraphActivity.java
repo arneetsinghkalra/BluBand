@@ -89,8 +89,6 @@ public class ChildGraphActivity extends BaseActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     childDatabase.removeValue();
                                     openHomeActivity();
-                                    Toast toast = Toast.makeText(ChildGraphActivity.this,"Child Removed"+childName,Toast.LENGTH_SHORT);
-                                    toast.show();
                                 }
                             });
                     builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -101,6 +99,9 @@ public class ChildGraphActivity extends BaseActivity {
                     });
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.bluBandBlue));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.bluBandBlue));
+
                 }
             });
         }
