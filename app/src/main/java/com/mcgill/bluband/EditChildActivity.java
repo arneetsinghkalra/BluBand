@@ -29,6 +29,7 @@ public class EditChildActivity extends BaseActivity {
     String phone;
     String childId;
     Button editChild;
+    Button removeChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

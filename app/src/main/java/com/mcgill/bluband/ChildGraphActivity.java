@@ -1,9 +1,11 @@
 package com.mcgill.bluband;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import android.widget.Toast;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -35,7 +38,9 @@ public class ChildGraphActivity extends BaseActivity {
     TextView dateOfBirthText;
 
     Button editBtn;
+    Button removeChild;
 
+    String childName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,8 @@ public class ChildGraphActivity extends BaseActivity {
         dateOfBirthText = (TextView) findViewById(R.id.dateOfBirthFixedText);
 
         editBtn = (Button) findViewById(R.id.editChildBtn);
-        DatabaseReference childDatabase;
+        removeChild = (Button) findViewById(R.id.removeChildBtn);
+        final DatabaseReference childDatabase;
 
         //Set up button to go back to main dashboard
         setToolbar();
@@ -67,6 +73,34 @@ public class ChildGraphActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     openEditChildActivity(childId);
+                }
+            });
+
+            removeChild.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ChildGraphActivity.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("Remove "+childName);
+                    builder.setMessage("Are you sure you would like to remove this child from the database?");
+                    builder.setPositiveButton("Remove Child",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    childDatabase.removeValue();
+                                    openHomeActivity();
+                                    Toast toast = Toast.makeText(ChildGraphActivity.this,"Child Removed"+childName,Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+                            });
+                    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //Do nothing
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
         }
@@ -96,7 +130,7 @@ public class ChildGraphActivity extends BaseActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Child child = dataSnapshot.getValue(Child.class);
-                String childName = child.getName();
+                childName = child.getName();
                 String childGender = child.getGender();
                 String childAddress= child.getAddress();
                 String childPhone = child.getPhone();
