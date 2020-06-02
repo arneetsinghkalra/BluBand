@@ -118,7 +118,6 @@ public class HomeActivity extends BaseActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         int childNumberId = position + 1;
                         String childId = "CH" + String.format("%03d", childNumberId);
-                        Toast.makeText(HomeActivity.this, childId , Toast.LENGTH_SHORT).show();
                         openChildGraphActivity(childId);
                     }
                 });

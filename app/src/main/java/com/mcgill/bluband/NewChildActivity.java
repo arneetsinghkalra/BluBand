@@ -29,8 +29,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.ArrayList;
 
 public class NewChildActivity extends BaseActivity {
-    FirebaseAuth FirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
     private Button addChildButton;
     private EditText nameInput;
     private EditText genderInput;
@@ -189,7 +187,6 @@ public class NewChildActivity extends BaseActivity {
                     aNewChild.setPhone(phone);
                     //Add to database
                     myDatabase.child(childId).setValue(aNewChild);
-//                    myDatabase.push().setValue(aNewChild);
                     //Show a toast to see if it worked
                     Toast.makeText(NewChildActivity.this, "New Child Inserted!", Toast.LENGTH_LONG).show();
                     openNewChildActivity();
