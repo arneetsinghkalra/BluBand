@@ -23,11 +23,19 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import org.w3c.dom.Text;
+
 public class ChildGraphActivity extends BaseActivity {
 
     TextView childNameTextView;
-    String childName;
+    TextView genderText;
+    TextView addressText;
+    TextView phoneText;
+    TextView contactPersonText;
+    TextView dateOfBirthText;
+
     Button editBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,12 @@ public class ChildGraphActivity extends BaseActivity {
         setContentView(R.layout.activity_child_graph);
 
         childNameTextView = (TextView) findViewById(R.id.childNameTextView);
+        genderText = (TextView) findViewById(R.id.genderFixedText);
+        addressText = (TextView) findViewById(R.id.addressFixedText);
+        phoneText = (TextView) findViewById(R.id.phoneFixedText);
+        contactPersonText = (TextView) findViewById(R.id.contactPersonFixedText);
+        dateOfBirthText = (TextView) findViewById(R.id.dateOfBirthFixedText);
+
         editBtn = (Button) findViewById(R.id.editChildBtn);
         DatabaseReference childDatabase;
 
@@ -47,8 +61,7 @@ public class ChildGraphActivity extends BaseActivity {
         //A valid ID was passed
         if (!childId.isEmpty()) {
             childDatabase= FirebaseDatabase.getInstance().getReference().child("children").child(childId);
-            setTitle(childDatabase);
-
+            addChildInfo(childDatabase);
 
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,13 +90,27 @@ public class ChildGraphActivity extends BaseActivity {
         });
     }
 
-    private void setTitle(DatabaseReference childDatabase) {
+    //Method that captures all child data from database and inputs it into the correct fields
+    private void addChildInfo(DatabaseReference childDatabase) {
         childDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Child child = dataSnapshot.getValue(Child.class);
-                childName = child.getName();
+                String childName = child.getName();
+                String childGender = child.getGender();
+                String childAddress= child.getAddress();
+                String childPhone = child.getPhone();
+                String childContactPerson = child.getContactPerson();
+                String childDateOfBirth = child.getDateOfBirth();
+
+                if (childPhone == null) childPhone = "Phone number not provided";
+
                 childNameTextView.setText(childName);
+                genderText.setText("Gender: "+childGender);
+                addressText.setText("Address: "+childAddress);
+                phoneText.setText("Phone: "+childPhone);
+                contactPersonText.setText("Contact Person: "+childContactPerson);
+                dateOfBirthText.setText("Date of Birth: "+childDateOfBirth);
             }
 
             @Override

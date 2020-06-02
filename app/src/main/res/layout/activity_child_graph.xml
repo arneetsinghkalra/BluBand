@@ -48,6 +48,96 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.08" />
 
+    <TextView
+        android:id="@+id/genderFixedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:text="Gender:"
+        android:textColor="@color/bluBandBlue"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childNameTextView"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <TextView
+        android:id="@+id/contactPersonFixedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:text="Contact Person:"
+        android:textColor="@color/bluBandBlue"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childNameTextView"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <TextView
+        android:id="@+id/addressFixedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:text="Address:"
+        android:textColor="@color/bluBandBlue"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childNameTextView"
+        app:layout_constraintVertical_bias="0.236" />
+
+    <TextView
+        android:id="@+id/dateOfBirthFixedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:text="Date of Birth:"
+        android:textColor="@color/bluBandBlue"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childNameTextView"
+        app:layout_constraintVertical_bias="0.129" />
+
+    <TextView
+        android:id="@+id/phoneFixedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:text="Phone:"
+        android:textColor="@color/bluBandBlue"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childNameTextView"
+        app:layout_constraintVertical_bias="0.333" />
+
     <Button
         android:id="@+id/editChildBtn"
         android:layout_width="wrap_content"
