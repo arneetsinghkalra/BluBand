@@ -1,10 +1,27 @@
 package com.mcgill.bluband;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Date;
 
 public class Child {
     public String name, gender, address, contactPerson, dateOfBirth, phone;
     public int glucose;
+
+    public String key;
+
+    @Exclude
+    public String getKey() {
+        return key;
+    }
+
+    @Exclude
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+
+
     public Child(){
         //Default Constructor
     }

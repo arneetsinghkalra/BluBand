@@ -25,6 +25,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends BaseActivity {
     private ListView listView;
@@ -100,6 +101,7 @@ public class HomeActivity extends BaseActivity {
         final ArrayList<String> list = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, list);
         listView.setAdapter(adapter);
+        final List<Child> childList = new ArrayList<>();
 
         myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
         myDatabase.addValueEventListener(new ValueEventListener() {
@@ -108,6 +110,10 @@ public class HomeActivity extends BaseActivity {
                 list.clear();
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Child aChild = snapshot.getValue(Child.class);
+                    String dataKey = String.valueOf(snapshot.getKey()); //Store the key of the data as it is in the database
+                    aChild.setKey(dataKey); //Add that key to the Child object
+                    childList.add(aChild); //Add Child object to a list of Child objects
+                    //Finally add each piece of data to the list
                     String txt = aChild.getName()+"\nGlucose Level: "+aChild.getGlucose()+" mg/dL";
                     list.add(txt);
                 }
@@ -116,9 +122,8 @@ public class HomeActivity extends BaseActivity {
                 //Code runs when you click on an item in the listview
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        int childNumberId = position + 1;
-                        String childId = "CH" + String.format("%03d", childNumberId);
-                        openChildGraphActivity(childId);
+                        Child selectedChild = childList.get(position); //Get key of child we clicked
+                        openChildGraphActivity(selectedChild.getKey()); //Pass on the key to the child graph activity
                     }
                 });
             }
@@ -128,15 +133,5 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent showChildGraphActivity = new Intent(getApplicationContext(), ChildGraphActivity.class);
-                showChildGraphActivity.putExtra("CHILD_ID", position);
-                startActivity(showChildGraphActivity);
-            }
-        });
-
     }
 }
