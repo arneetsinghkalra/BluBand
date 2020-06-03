@@ -45,7 +45,6 @@ public class NewChildActivity extends BaseActivity {
     String contactPerson;
     String phone;
     String childId;
-    int nbChildren = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,17 +126,6 @@ public class NewChildActivity extends BaseActivity {
         aNewChild = new Child();
         //Reference database
         myDatabase = FirebaseDatabase.getInstance().getReference().child("children");
-        myDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                nbChildren = (int) dataSnapshot.getChildrenCount() + 1;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         addChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,8 +165,6 @@ public class NewChildActivity extends BaseActivity {
                     Toast.makeText(NewChildActivity.this, "Please insert a contact person!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    childId = "CH" + String.format("%03d", nbChildren);
-
                     aNewChild.setName(name);
                     aNewChild.setGender(gender);
                     aNewChild.setDateOfBirth(dateOfBirth);
@@ -186,9 +172,9 @@ public class NewChildActivity extends BaseActivity {
                     aNewChild.setContactPerson(contactPerson);
                     aNewChild.setPhone(phone);
                     //Add to database
-                    myDatabase.child(childId).setValue(aNewChild);
+                    myDatabase.push().setValue(aNewChild);
                     //Show a toast to see if it worked
-                    Toast.makeText(NewChildActivity.this, "New Child Inserted!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NewChildActivity.this, "Added "+name, Toast.LENGTH_LONG).show();
                     openNewChildActivity();
                 }
             }

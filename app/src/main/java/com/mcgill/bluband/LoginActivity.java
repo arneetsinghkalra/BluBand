@@ -39,14 +39,14 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword = (TextView)findViewById(R.id.forgotPasswordText);
         dontHaveAnAccount = (TextView)findViewById(R.id.donthaveanaccountText);
 
-
+/* //Not sure what this code is doing for us right now
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
 
                 if (user != null) {
-                    //Toast.makeText(LoginActivity.this,"Successfully Logged In",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this,"Welcome Back!",Toast.LENGTH_SHORT).show();
                     openHomeActivity();
                 }
                 else{
@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
+
+ */
 
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Toast.makeText(LoginActivity.this,"Successful Login",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,"Welcome Back!",Toast.LENGTH_SHORT).show();
                                 openHomeActivity();
                             }
                         }
