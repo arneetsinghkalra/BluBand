@@ -39,13 +39,13 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openChildGraphActivity(String childId){
+    public void openChildGraphActivity(int childNumberId){
         Intent intent = new Intent(this, ChildGraphActivity.class);
-        intent.putExtra("CHILD_ID", childId);
+        intent.putExtra("CHILD_ID", childNumberId);
         startActivity(intent);
     }
 
-    public void openEditChildActivity(String childNumberId) {
+    public void openEditChildActivity(int childNumberId) {
         Intent intent = new Intent(this, EditChildActivity.class);
         intent.putExtra("CHILD_ID", childNumberId);
         startActivity(intent);

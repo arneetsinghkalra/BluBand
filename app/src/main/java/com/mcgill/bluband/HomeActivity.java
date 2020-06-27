@@ -124,6 +124,9 @@ public class HomeActivity extends BaseActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Child selectedChild = childList.get(position); //Get key of child we clicked
                         openChildGraphActivity(selectedChild.getKey()); //Pass on the key to the child graph activity
+                        int childNumberId = position + 1;
+                        Toast.makeText(HomeActivity.this,"CH"+childNumberId , Toast.LENGTH_SHORT).show();
+                        openChildGraphActivity(childNumberId);
                     }
                 });
             }
