@@ -6,8 +6,7 @@ import java.util.Date;
 
 public class Child {
     public String name, gender, address, contactPerson, dateOfBirth, phone;
-    public int glucose;
-
+    public Glucose glucose;
     public String key;
 
     @Exclude
@@ -19,7 +18,6 @@ public class Child {
     public void setKey(String key) {
         this.key = key;
     }
-
 
 
     public Child(){
@@ -34,7 +32,7 @@ public class Child {
         this.phone = phone;
     }
 
-    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, int glucose){
+    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, Glucose glucose){
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -52,11 +50,11 @@ public class Child {
         this.phone = phone;
     }
 
-    public int getGlucose() {
+    public Glucose getGlucose() {
         return glucose;
     }
 
-    public void setGlucose(int glucose) {
+    public void setGlucose(Glucose glucose) {
         this.glucose = glucose;
     }
 
