@@ -107,7 +107,6 @@ public class ChildGraphActivity extends BaseActivity {
 
                 }
             });
-        }
 
         }
     }
