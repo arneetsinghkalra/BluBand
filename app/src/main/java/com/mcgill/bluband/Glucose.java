@@ -1,23 +1,21 @@
 package com.mcgill.bluband;
 
 public class Glucose {
-    public String glucoseLevel, timestamp;
+    public String BGLevel, timestamp;
 
     public Glucose() {
     }
 
-    public Glucose(String glucoseLevel, String timestamp) {
-        this.glucoseLevel = glucoseLevel;
+    public Glucose(String BGLevel, String timestamp) {
+        this.BGLevel = BGLevel;
         this.timestamp = timestamp;
     }
 
-    public String getGlucoseLevel() {
-        return glucoseLevel;
+    public String getBGLevel() {
+        return BGLevel;
     }
 
-    public void setGlucoseLevel(String glucoseLevel) {
-        this.glucoseLevel = glucoseLevel;
-    }
+    public void setBGLevel(String BGLevel) { this.BGLevel = BGLevel; }
 
     public String getTimestamp() {
         return timestamp;

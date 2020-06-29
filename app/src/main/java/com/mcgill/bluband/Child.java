@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Child {
     public String name, gender, address, contactPerson, dateOfBirth, phone;
-    public Glucose glucose;
+    public GlucoseDB glucoseDB;
     public String key;
 
     @Exclude
@@ -32,13 +32,13 @@ public class Child {
         this.phone = phone;
     }
 
-    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, Glucose glucose){
+    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, GlucoseDB glucoseDB){
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.contactPerson = contactPerson;
-        this.glucose = glucose;
+        this.glucoseDB = glucoseDB;
     }
 
     public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, String phone){
@@ -50,12 +50,10 @@ public class Child {
         this.phone = phone;
     }
 
-    public Glucose getGlucose() {
-        return glucose;
-    }
+    public GlucoseDB getGlucoseDB() { return glucoseDB; }
 
-    public void setGlucose(Glucose glucose) {
-        this.glucose = glucose;
+    public void setGlucoseDB(GlucoseDB glucoseDB) {
+        this.glucoseDB = glucoseDB;
     }
 
     public String getName() {

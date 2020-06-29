@@ -114,7 +114,8 @@ public class HomeActivity extends BaseActivity {
                     aChild.setKey(dataKey); //Add that key to the Child object
                     childList.add(aChild); //Add Child object to a list of Child objects
                     //Finally add each piece of data to the list
-                    String txt = aChild.getName()+"\nGlucose Level: "+aChild.getGlucose()+" mg/dL";
+                    ArrayList<Glucose> glucoseDB = aChild.getGlucoseDB().getDatabase();
+                    String txt = aChild.getName()+"\nGlucose Level: "+glucoseDB.get(glucoseDB.size()-1)+" mg/dL";
                     list.add(txt);
                 }
                 adapter.notifyDataSetChanged();
