@@ -2,11 +2,12 @@ package com.mcgill.bluband;
 
 import com.google.firebase.database.Exclude;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Child {
     public String name, gender, address, contactPerson, dateOfBirth, phone;
-    public GlucoseDB glucoseDB;
+    public Map<String, Integer> glucoseDB;
     public String key;
 
     @Exclude
@@ -32,13 +33,12 @@ public class Child {
         this.phone = phone;
     }
 
-    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, GlucoseDB glucoseDB){
+    public Child(String name, String gender, String dateOfBirth, String address, String contactPerson){
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.contactPerson = contactPerson;
-        this.glucoseDB = glucoseDB;
     }
 
     public Child(String name, String gender, String dateOfBirth, String address, String contactPerson, String phone){
@@ -50,10 +50,20 @@ public class Child {
         this.phone = phone;
     }
 
-    public GlucoseDB getGlucoseDB() { return glucoseDB; }
-
-    public void setGlucoseDB(GlucoseDB glucoseDB) {
+    public Child(String name, String gender, String dataOfBirth, String address, String contactPerson, String phone, Map<String, Integer> glucoseDB) {
+        this.name = name;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.contactPerson = contactPerson;
+        this.phone = phone;
         this.glucoseDB = glucoseDB;
+    }
+
+    public Map<String, Integer> getGlucoseDB() { return this.glucoseDB; }
+
+    public void setGlucoseDB(Map<String, Integer> glucose) {
+        this.glucoseDB = glucose;
     }
 
     public String getName() {

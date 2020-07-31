@@ -26,6 +26,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class HomeActivity extends BaseActivity {
     private ListView listView;
@@ -112,10 +113,11 @@ public class HomeActivity extends BaseActivity {
                     Child aChild = snapshot.getValue(Child.class);
                     String dataKey = String.valueOf(snapshot.getKey()); //Store the key of the data as it is in the database
                     aChild.setKey(dataKey); //Add that key to the Child object
+
                     childList.add(aChild); //Add Child object to a list of Child objects
+
                     //Finally add each piece of data to the list
-                    ArrayList<Glucose> glucoseDB = aChild.getGlucoseDB().getDatabase();
-                    String txt = aChild.getName()+"\nGlucose Level: "+glucoseDB.get(glucoseDB.size()-1)+" mg/dL";
+                    String txt = aChild.getName() + "\nGlucose Level: " + aChild.getGlucoseDB().get("1440") + " mg/dL";
                     list.add(txt);
                 }
                 adapter.notifyDataSetChanged();
